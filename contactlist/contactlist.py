@@ -38,23 +38,16 @@ def man():
     print("\n")
     print("\n")
     print("\n")
-    print("bonsoir jeune padawan ;)")
-    print('vue la commande que tu à effectuer je sens que tu es perdu')
-    print("mais ne t'en fais pas, pas de panique, je vais te passer un petit tuto ci-dessous")
+    print("Bonjour,")
+    print("Voici les commandes possible d'effectuer ci-dessous.")
     print('\n')
-    print("En tapant 1, tu peux ajouter un utilisateurs dans ta base de données, il faudra juste que tu connaisse :")
-    print("son Nom, son Prenom, son Surnom, son numéro de Téléphone, son adresse mail et son adresse")
-    print("En tapant 2, tu peux afficher toute la liste des contact que tu à ajouter récemment avec toutes les données bien sur ;)")
-    print("En tapant 3, tu peux rechercher de manière plus précise un ou plusieurs contact en particulier")
-    print("en tapant 4, tu pourra obtenir cette aide-ci ;)")
-    print("En tapant 5, tu pourras rayer un des contacts que tu a enregistrer de la surface du globe, tout simplement ._.")
-    print("En tapant 6, tu pourras modifier la donnée que tu a renseigner sur un contact au cas tu a fais une petite boulette")
-    print('\n')
-    print("il y a aussi les option de recherche qui s'effectue comme ceci : ")
-    print("")
-    print("elle sert a se renseigner")
-    print("et voila bg, tu a toutes les infos requis pour pouvoir utiliser ma base de données tanquillement ;)")
-    
+    print("En tapant 1, vous pouvez ajouter un utilisateurs dans votre base de données, il vous faudra juste connaitre :")
+    print("son Nom, son Prenom, lui donner un Surnom, son numéro de Téléphone, son adresse mail et son adresse.")
+    print("En tapant 2, vous pouvez afficher toute la liste des contact que vous avez ajouter récemment.")
+    print("En tapant 3, vous pouvez effectuer une recherche de manière plus précise (pour chercher un contact précis par exemple).")
+    print("en tapant 4, vous pouvez réafficher cette interface d'aide.")
+    print("En tapant 5, vous pouvez effacer un contact.")
+    print("En tapant 6, vous pouvez modifier la donnée d'un des contacts")    
 
 def search(zone, rechercher):
     try:
@@ -84,24 +77,24 @@ def search(zone, rechercher):
             print("\n")
         conn.commit()
     except sqlite3.Error as error:
-        print("il y a une saucisse dans le potage °-°", error)
+        print("Erreur dans la base de données", error)
 
 def interact():
     choix = None
-    print("bonsoir et bienvenue dans le help jeune padawan :D")
-    print("voici toutes les commandes que tu peux utiliser sur cette base de donnée ;)")
-    while choix != "bye":
+    print("Bienvenue dans le mode d'aide,")
+    print("voici toutes les commandes que vous pouvez utilisé sur cette base de donnée.")
+    while choix != "Au revoir.":
         print("Tapez 1 pour ajouter un contact ")
         print("Tapez 2 pour afficher la liste des contacts ")
         print("Tapez 3 pour rechercher un ou plusieurs contacts ")
         print("Tapez 4 pour avoir l'aide ")
         print("Tapez 5 pour supprimer un contact ")
         print("Tapez 6 pour modifier les informations d'un contact ")
-        choix = input("Que voulez vous faire ? : ")
+        choix = input("Que souaihtez vous faire ? : ")
         if choix == "1":
             Nom= input('Quel est son nom ? : ')
             Prenom= input('Quel est son prénom ? : ')
-            Surnom= input('Quel est son surnom ? : ')
+            Surnom= input('Quel est surnom lui donnez vous ? : ')
             Telephone= input('Quel est son numéro de téléphone ? (veuillez respecter le format "0x-xx-xx-xx-xx"): ')
             Email = input('Quel est son Email ? (veuillez respecter le format "XXX.XXX@XXX.XXX"): ')
             Adresse= input("Quel est son adresse ? : ")
@@ -109,41 +102,41 @@ def interact():
             try: 
                 Telephone_test = re.match(format_tel, Telephone)
                 while Telephone_test == None:
-                    print("Désolé mais y a une norme mon mon frero -_-' , regarde c'est cette norme la :D  : 0x-xx-xx-xx-xx (il faut aussi ajouter les tiret)")
-                    Telephone = input('Recommence avec la norme :) : ')
+                    print("La norme de téléphone n'est pas respecter, veillez a ce que le numero de telephone ressemble a ceci: 0x-xx-xx-xx-xx (n'oubliez pas les '-' entre chaque numéro)")
+                    Telephone = input('Recommencez ici : ')
                     Telephone_test = re.match(format_tel, Telephone)
             except:
                 print("")
             try: 
                 Email_test = re.match(format_email, Email)
                 while Email_test == None:
-                    print("Désolé mais y a une norme mon mon frero -_-' , regarde c'est cette norme la :D  : XXX.XXX@XXX.XXX")
-                    Email = input('Recommence avec la norme :) : ')
+                    print("La norme de de l'email n'est pas respecter, veillez a ce que le mail ressemble a ceci:  XXX.XXX@XXX.XXX")
+                    Email = input('Recommencez ici : ')
                     Email_test = re.match(format_email, Email)
             except:
                 print("")
-            print("Ajouter avec succès bro")
+            print("Ajouter avec succès.")
             print("\n")      
         if choix == "2":    
             list()   
             print("\n")
         if choix == "3":
             zone = input("Sur quel zone spécifique (Nom/Prenom/Surnom/Téléphone/Email/Adresse) recherche-tu ? : ")
-            rechercher = input("Quel donnée recherche tu ? ? ")
+            rechercher = input("Quel donnée recherche tu ? ")
             search(zone, rechercher) 
             print("\n")
         if choix =="4":
             man()
             print("\n")
         if choix =="5":
-            Nom= input('Quel est le nom de votre contact que tu veux supprimer ?: ')
-            Prenom= input('Quel est le prénom du contact que tu veux supprimer ? : ')
-            Surnom= input('Quel est le surnom du contact que tu veux supprimer ? : ')
-            Telephone= input('Quel est le numéro de téléphone du contact que tu veux supprimer ? : ')
-            Email= input('Quel est l Email du contact que tu veux supprimer ? : ')
-            Adresse= input("Quel est l'adresse du contact que tu veux supprimer ? : ")
+            Nom= input('Quel est le nom de votre contact que vous voulez supprimer ?: ')
+            Prenom= input('Quel est le prénom du contact que vous voulez supprimer ? : ')
+            Surnom= input('Quel est le surnom du contact que vous voulez supprimer ? : ')
+            Telephone= input('Quel est le numéro de téléphone du contact que vous voulez supprimer ? : ')
+            Email= input('Quel est l Email du contact que vous voulez supprimer ? : ')
+            Adresse= input("Quel est l'adresse du contact que vous voulez supprimer ? : ")
             supprimer(Nom,Prenom,Surnom,Telephone,Email,Adresse)
-            print("Suppression réussie mon gars !")
+            print("Suppression réussie.")
             print("\n")
         if choix =="6":
             Loca_update = input("Quel est la colonne a modifier (Nom/Prenom/Surnom/Téléphone/Email/Adresse): ")
@@ -158,16 +151,16 @@ def interact():
             try: 
                 Telephone_test = re.match(format_tel, Telephone)
                 while Telephone_test == None:
-                    print("Désolé mais y a une norme mon mon frero -_-' , regarde c'est cette norme la :D  : 0x-xx-xx-xx-xx (il faut aussi ajouter les tiret)")
-                    Telephone = input('Recommence avec la norme :) : ')
+                    print("La norme de téléphone n'est pas respecter, veillez a ce que le numero de telephone ressemble a ceci: 0x-xx-xx-xx-xx (n'oubliez pas les '-' entre chaque numéro)")
+                    Telephone = input('Recommencez ici : ')
                     Telephone_test = re.match(format_tel, Telephone)
             except:
                 print("")
             try: 
                 Email_test = re.match(format_email, Email)
                 while Email_test == None:
-                    print("Désolé mais y a une norme mon mon frero -_-' , regarde c'est cette norme la :D  : XXX.XXX@XXX.XXX")
-                    Email = input('Recommence avec la norme :) : ')
+                    print("La norme de de l'email n'est pas respecter, veillez a ce que le mail ressemble a ceci:  XXX.XXX@XXX.XXX")
+                    Email = input('Recommencez ici : ')
                     Email_test = re.match(format_email, Email)
             except:
                 print("")
@@ -180,7 +173,7 @@ def supprimer(Nom, Prenom, Surnom, Telephone, Email, Adresse):
         cur.execute(Delete, Suppr)
         conn.commit()  
     except sqlite3.Error as error:
-        print("y a un shmilblique mon petit gars ! ", error)
+        print("Il y a une erreur avec la communication avec la base de données.", error)
 
 def maj(Loca_update,New_data,Nom, Prenom, Surnom, Téléphone, Email, Adresse):
     if Loca_update == "Nom":
@@ -205,18 +198,16 @@ def maj(Loca_update,New_data,Nom, Prenom, Surnom, Téléphone, Email, Adresse):
 for arg in sys.argv:
     try:
         if sys.argv[1] == "new" :
-            Nom= input('Quel est le nom du contact : ')
-            Prenom= input('Quel est le prénom du contact : ')
-            Surnom= input('Quel est le surnom du contact :')
-            Telephone= input('Quel est le numéro de téléphone du contact : ')
-            Email= input('Quel est l Email du contact ')
-            Adresse= input("Quel est l'adresse du contact ")
+            Nom= input('Quel est le nom de votre contact : ')
+            Prenom= input('Quel est le prénom de votre contact : ')
+            Surnom= input('Quel est le surnom de votre contact :')
+            Telephone= input('Quel est le numéro de téléphone de votre contact : ')
+            Email= input('Quel est l Email de votre contact ')
+            Adresse= input("Quel est l'adresse de votre contact ")
             Insert_into(Nom,Prenom,Surnom,Telephone,Email,Adresse)
-            print("3... 2... 1... et... TA DA.")
-            print("Félicitation, ta base de données compte 1 membre de plus ! :D")
+            print("Contact ajouter avec succès.")
             break
               
-
         if sys.argv[1] == "list" :
             list()
             break
@@ -265,8 +256,8 @@ for arg in sys.argv:
                     zone = "Adresse"
                 search(zone, rechercher)
             except:
-                    print ("Press F to pay respect to the commands :( ")
-                    print ("ou alors n'hésite pas de consulter la commande help :)")
+                    print ("Il y a une erreur dans la commande,")
+                    print ("veuillez consulter le menu d'aide si vous en avez besoin.")
             break
     except:
             interact()
